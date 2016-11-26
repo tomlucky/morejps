@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<div>
+    <div class="list-group">
+        {% for folder in datefolders %}
+            <a href="?folderdate={{ folder.name }}" class="list-group-item">{{ folder.name }}</a>
+        {% endfor %}
+
+    </div>
+</div>

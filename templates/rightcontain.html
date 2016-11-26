@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+{% for imgs in imgsList %}
+
+    <div class="row">
+        <a href="{{ imgs.avPath }}" target="_blank">
+            <p>Folder name: {{ imgs.imgfoldername }} __this is the .avi
+                links</p></a>
+        {% for img in imgs.imgs %}
+            {#            {{ img }}#}
+            <div class="col-xs-6 col-md-3">
+                <a href="{{ img }}" target="_blank"
+                   class="thumbnail">
+                    <img width="200" height="200"
+                            {#                                                                                                             src="{{ img }}"#}
+                         src="http://image.tianjimedia.com/uploadImages/2014/064/K5ZO3MZ990K2.jpg"
+                         alt="...">
+                </a>
+            </div>
+
+        {% endfor %}
+
+    </div>
+{% endfor %}
