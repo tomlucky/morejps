@@ -7,7 +7,7 @@ import lxml.html
 
 from morejps.models import *
 
-url = "hxxx"
+url = "xxx"
 
 
 # h = httplib2.Http(".cache")
@@ -57,16 +57,16 @@ def getData():
             # print imgsFolders
             for imgFolder in imgsFolders:  # get sub folders in date
                 # print "imgFolder:", imgFolder.text
-                # if not str(imgFolder.text).__contains__('Parent'):
-                imgLinks = lxml.html.fromstring(get_html(subUrl + "/" + imgFolder.text)).xpath('.//a[@href]')
-                for imgLink in imgLinks:  # get imglinks !!!
-                    # print "imgLink:", imgLink.text
-                    if str(imgLink.text).__contains__('.'):
-                        imgurl = subUrl + "/" + imgFolder.text + "/" + imgLink.text
-                        avpath = subUrl + "/" + imgFolder.text + "/1/xml/"
-                        # print "final imgLink:", imgurl
-                        # if ContainDate.objects.filter(imgpath=imgurl).count() > 0:  # no need save
-                        #     break
-                        saveImgsDB(imgFolder.text, dateFolder.text, imgurl, avpath)
+                if not str(imgFolder.text).__contains__('Parent') and not str(imgFolder.text).__contains__('.'):
+                    imgLinks = lxml.html.fromstring(get_html(subUrl + "/" + imgFolder.text)).xpath('.//a[@href]')
+                    for imgLink in imgLinks:  # get imglinks !!!
+                        # print "imgLink:", imgLink.text
+                        if str(imgLink.text).__contains__('.'):
+                            imgurl = subUrl + "/" + imgFolder.text + "/" + imgLink.text
+                            avpath = subUrl + "/" + imgFolder.text + "/1/xml/"
+                            # print "final imgLink:", imgurl
+                            # if ContainDate.objects.filter(imgpath=imgurl).count() > 0:  # no need save
+                            #     break
+                            saveImgsDB(imgFolder.text, dateFolder.text, imgurl, avpath)
 
-                        # break
+                            # break
